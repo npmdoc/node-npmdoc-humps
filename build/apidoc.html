@@ -1,0 +1,410 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+        href="https://github.com/domchristie/humps"
+
+    >humps (v2.0.0)</a>
+</h1>
+<h4>Underscore-to-camelCase converter (and vice versa) for strings and object keys in JavaScript.</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.humps">module humps</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.humps.camelize">
+            function <span class="apidocSignatureSpan">humps.</span>camelize
+            <span class="apidocSignatureSpan">(string)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.humps.camelizeKeys">
+            function <span class="apidocSignatureSpan">humps.</span>camelizeKeys
+            <span class="apidocSignatureSpan">(object, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.humps.decamelize">
+            function <span class="apidocSignatureSpan">humps.</span>decamelize
+            <span class="apidocSignatureSpan">(string, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.humps.decamelizeKeys">
+            function <span class="apidocSignatureSpan">humps.</span>decamelizeKeys
+            <span class="apidocSignatureSpan">(object, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.humps.depascalize">
+            function <span class="apidocSignatureSpan">humps.</span>depascalize
+            <span class="apidocSignatureSpan">(string, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.humps.depascalizeKeys">
+            function <span class="apidocSignatureSpan">humps.</span>depascalizeKeys
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.humps.pascalize">
+            function <span class="apidocSignatureSpan">humps.</span>pascalize
+            <span class="apidocSignatureSpan">(string)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.humps.pascalizeKeys">
+            function <span class="apidocSignatureSpan">humps.</span>pascalizeKeys
+            <span class="apidocSignatureSpan">(object, options)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.humps" id="apidoc.module.humps">module humps</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.humps.camelize" id="apidoc.element.humps.camelize">
+        function <span class="apidocSignatureSpan">humps.</span>camelize
+        <span class="apidocSignatureSpan">(string)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">camelize = function (string) {
+  if (_isNumerical(string)) {
+    return string;
+  }
+  string = string.replace(/[\-_\s]+(.)?/g, function(match, chr) {
+    return chr ? chr.toUpperCase() : &#x27;&#x27;;
+  });
+  // Ensure 1st char is always lowercase
+  return string.substr(0, 1).toLowerCase() + string.substr(1);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+Takes inspiration from [Ember Data](https://github.com/emberjs/data) and copies some utility functions from [Underscore.js](http
+://underscorejs.org/).
+
+Usage
+-----
+
+### Converting strings
+
+humps.<span class="apidocCodeKeywordSpan">camelize</span>(&#x27;hello_world&#x27;) // &#x27;helloWorld&#x27;
+humps.decamelize(&#x27;fooBar&#x27;) // &#x27;foo_bar&#x27;
+humps.decamelize(&#x27;fooBarBaz&#x27;, { separator: &#x27;-&#x27; }) // &#x27;foo-bar-baz&#x27;
+
+### Converting object keys
+
+var object = { attr_one: &#x27;foo&#x27;, attr_two: &#x27;bar&#x27; }
+humps.camelizeKeys(object); // { attrOne: &#x27;foo&#x27;, attrTwo: &#x27;bar&#x27; }
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.humps.camelizeKeys" id="apidoc.element.humps.camelizeKeys">
+        function <span class="apidocSignatureSpan">humps.</span>camelizeKeys
+        <span class="apidocSignatureSpan">(object, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">camelizeKeys = function (object, options) {
+  return _processKeys(_processor(camelize, options), object);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    humps.camelize(&#x27;hello_world&#x27;) // &#x27;helloWorld&#x27;
+    humps.decamelize(&#x27;fooBar&#x27;) // &#x27;foo_bar&#x27;
+    humps.decamelize(&#x27;fooBarBaz&#x27;, { separator: &#x27;-&#x27; }) // &#x27;foo-bar-baz&#x27;
+
+### Converting object keys
+
+    var object = { attr_one: &#x27;foo&#x27;, attr_two: &#x27;bar&#x27; }
+    humps.<span class="apidocCodeKeywordSpan">camelizeKeys</span>(object); // { attrOne: &#x27;foo&#x27;, attrTwo: &#x27;bar&#x27
+; }
+
+Arrays of objects are also converted
+
+    var array = [{ attr_one: &#x27;foo&#x27; }, { attr_one: &#x27;bar&#x27; }]
+    humps.camelizeKeys(array); // [{ attrOne: &#x27;foo&#x27; }, { attrOne: &#x27;bar&#x27; }]
+
+It also accepts a callback which can modify the conversion behavior. For example to prevent conversion of keys containing only uppercase
+ letters or numbers:
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.humps.decamelize" id="apidoc.element.humps.decamelize">
+        function <span class="apidocSignatureSpan">humps.</span>decamelize
+        <span class="apidocSignatureSpan">(string, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">decamelize = function (string, options) {
+  return separateWords(string, options).toLowerCase();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+Usage
+-----
+
+### Converting strings
+
+humps.camelize(&#x27;hello_world&#x27;) // &#x27;helloWorld&#x27;
+humps.<span class="apidocCodeKeywordSpan">decamelize</span>(&#x27;fooBar&#x27;) // &#x27;foo_bar&#x27;
+humps.decamelize(&#x27;fooBarBaz&#x27;, { separator: &#x27;-&#x27; }) // &#x27;foo-bar-baz&#x27;
+
+### Converting object keys
+
+var object = { attr_one: &#x27;foo&#x27;, attr_two: &#x27;bar&#x27; }
+humps.camelizeKeys(object); // { attrOne: &#x27;foo&#x27;, attrTwo: &#x27;bar&#x27; }
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.humps.decamelizeKeys" id="apidoc.element.humps.decamelizeKeys">
+        function <span class="apidocSignatureSpan">humps.</span>decamelizeKeys
+        <span class="apidocSignatureSpan">(object, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">decamelizeKeys = function (object, options) {
+  return _processKeys(_processor(decamelize, options), object, options);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+humps.camelizeKeys(array); // [{ attrOne: &#x27;foo&#x27; }, { attrOne: &#x27;bar&#x27; }]
+
+It also accepts a callback which can modify the conversion behavior. For example to prevent conversion of keys containing only uppercase
+ letters or numbers:
+
+humps.camelizeKeys(obj, function (key, convert) {
+  return /^[A-Z0-9_]+$/.test(key) ? key : convert(key);
+});
+humps.<span class="apidocCodeKeywordSpan">decamelizeKeys</span>(obj, function (key, convert, options) {
+  return /^[A-Z0-9_]+$/.test(key) ? key : convert(key, options);
+});
+
+In order to use the callback with options use the `process` option:
+
+humps.decamelizeKeys(obj, {
+    separator: &#x27;-&#x27;,
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.humps.depascalize" id="apidoc.element.humps.depascalize">
+        function <span class="apidocSignatureSpan">humps.</span>depascalize
+        <span class="apidocSignatureSpan">(string, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">depascalize = function (string, options) {
+  return separateWords(string, options).toLowerCase();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+By default, `decamelize` will only split words on capital letters (not numbers as in humps pre v1.0). To customize this behaviour
+, use the `split` option. This should be a regular expression which, when passed into `String.prototype.split`, produces an array
+ of words (by default the regular expression is: `/(?=[A-Z])/`). For example, to treat numbers as uppercase:
+
+```javascript
+humps.decamelize(&#x27;helloWorld1&#x27;, { split: /(?=[A-Z0-9])/ }) // &#x27;hello_world_1&#x27;
+```
+
+### `humps.<span class="apidocCodeKeywordSpan">depascalize</span>(string, options)`
+
+Same as `humps.decamelize` above.
+
+### `humps.camelizeKeys(object, options)`
+
+Converts object keys to camelCase. It also converts arrays of objects.
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.humps.depascalizeKeys" id="apidoc.element.humps.depascalizeKeys">
+        function <span class="apidocSignatureSpan">humps.</span>depascalizeKeys
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">depascalizeKeys = function () {
+  return this.decamelizeKeys.apply(this, arguments);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+Converts object keys to PascalCase. It also converts arrays of objects.
+
+### `humps.decamelizeKeys(object, options)`
+
+Separates camelCased object keys with an underscore. It also converts arrays of objects. See `humps.decamelize` for details of options
+.
+
+### `humps.<span class="apidocCodeKeywordSpan">depascalizeKeys</span>(object, options)`
+
+See `humps.decamelizeKeys`.
+
+Licence
+-------
+humps is copyright &#x26;copy; 2012+ [Dom Christie](http://domchristie.co.uk) and released under the MIT license.
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.humps.pascalize" id="apidoc.element.humps.pascalize">
+        function <span class="apidocSignatureSpan">humps.</span>pascalize
+        <span class="apidocSignatureSpan">(string)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">pascalize = function (string) {
+  var camelized = camelize(string);
+  // Ensure 1st char is always uppercase
+  return camelized.substr(0, 1).toUpperCase() + camelized.substr(1);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+Removes any hypens, underscores, and whitespace characters, and uppercases the first character that follows.
+
+```javascript
+humps.camelize(&#x27;hello_world-foo bar&#x27;) // &#x27;helloWorldFooBar&#x27;
+```
+
+### `humps.<span class="apidocCodeKeywordSpan">pascalize</span>(string)`
+
+Similar to `humps.camelize(string)`, but also ensures that the first character is uppercase.
+
+```javascript
+humps.pascalize(&#x27;hello_world-foo bar&#x27;) // &#x27;HelloWorldFooBar&#x27;
+```
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.humps.pascalizeKeys" id="apidoc.element.humps.pascalizeKeys">
+        function <span class="apidocSignatureSpan">humps.</span>pascalizeKeys
+        <span class="apidocSignatureSpan">(object, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">pascalizeKeys = function (object, options) {
+  return _processKeys(_processor(pascalize, options), object);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+Same as `humps.decamelize` above.
+
+### `humps.camelizeKeys(object, options)`
+
+Converts object keys to camelCase. It also converts arrays of objects.
+
+### `humps.<span class="apidocCodeKeywordSpan">pascalizeKeys</span>(object, options)`
+
+Converts object keys to PascalCase. It also converts arrays of objects.
+
+### `humps.decamelizeKeys(object, options)`
+
+Separates camelCased object keys with an underscore. It also converts arrays of objects. See `humps.decamelize` for details of options
+.
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
